@@ -28,6 +28,7 @@ const authController = {
         }
     },
     //login
+    //login
     loginUser: async (req, res, next) => {
         try {
             const user = await User.findOne({ username: req.body.username });
