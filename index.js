@@ -8,6 +8,7 @@ const userRoute = require("./router/user");
 const passwordRoute = require("./router/password");
 const dishRoute = require("./router/dishes");
 const categoryRoute = require("./router/categories");
+const uploadImage = require("./router/upload");
 dotenv.config();
 mongoose.set('strictQuery', true);
 const mongoURI = process.env.MONGODB_URI;
@@ -34,6 +35,7 @@ app.use("/v1/user", userRoute);
 app.use("/v1/password", passwordRoute);
 app.use("/v1/dishes",dishRoute);
 app.use("/v1/categories", categoryRoute);
+app.use("/v1/media",uploadImage);
 app.listen(8000, () => {
     console.log("server is running");
 })

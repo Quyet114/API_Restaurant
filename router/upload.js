@@ -1,5 +1,9 @@
-const uploadController = require("../controller/uploadController");
-
+const uploadController = require('../controller/uploadController')
 const route = require("express").Router();
-route.post("/v1/media/upload",uploadController.uploadImage);
+const uploadCloud = require('../controller/middleware/cloudinaryMiddleware')
+//upload image to
+route.post("/upload",uploadCloud.single('image'), uploadController.uploadImage);
+
 module.exports = route;
+
+//-----------------------------------

@@ -1,6 +1,6 @@
-const middlewareController = require("../controller/middlewareController");
+const middlewareController = require("../controller/middleware/middlewareController");
 const dishesController = require('../controller/dishesContronller');
-
+const uploadCloud = require('../controller/middleware/cloudinaryMiddleware');
 const route = require("express").Router();
 //create new dish
 route.post("/addnew", dishesController.createNewDish);

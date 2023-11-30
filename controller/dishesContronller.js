@@ -3,24 +3,22 @@ const dishesController = {
     //add New món ăn
     createNewDish: async (req, res, next) => {
         try {
-            // name: string;
-            // picture: string;
-            // about: string;
-            // isAdmin: boolean;
-            // start: number;
-            // price: number;
+            //const imageData = req.file;
             const newDish = await new Dishes({
                 name: req.body.name,
-                picture: req.body.picture,
+                picture: req.file.path,
                 about: req.body.about,
                 start: req.body.start,
                 price: req.body.price,
 
             });
+            console.log(req.file);
+            //console.log(req);
             const dish = await newDish.save();
             res.status(200).json(dish);
+            //res.status(200).json('ok');
         } catch (error) {
-            res.status(500).json(error);
+            c
         }
     },
     // get all món ăn
