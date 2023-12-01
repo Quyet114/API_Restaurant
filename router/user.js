@@ -7,6 +7,7 @@ const route = require("express").Router();
 route.get("/",middlewareController.verifyToken,userController.getAllUser);
 //Get users
 route.get("/:id",middlewareController.verifyTokenAndAdmin,userController.getUserId);
+route.get("/one/:id",userController.getUserId);
 //Delete user
 route.delete("/:id", userController.deleteUser);
 //updateUser
