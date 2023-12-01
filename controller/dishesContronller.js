@@ -69,18 +69,23 @@ const dishesController = {
         }
     },
     //tìm kiếm món ăn
-    findOneDish: async (req,res,next) => {
-        const keyword = req.params;
+    findOneDish: async (req,res) => {
+        const {keyword} = req.body;
         try {
-            const dishes = await Dishes.find(keyword);
+            const dishes = await Dishes.find(
+                { about: new RegExp(keyword, 'i') }
+            );
             if (!dishes || dishes.length === 0) {
+
                 return res.status(404).json({ message: 'Không tìm thấy tìm kiếm phù hợp.' });
             }
+            console.log(keyword);
             return res.status(200).json(dishes);;
 
         } catch (error) {
             res.status(500).json(error);
-            console.log("lỗi ở đây: ",error);
+            console.log("lỗi ở đây: ", error);
+            console.log("key errs", keyword);
         }
     }
 }
