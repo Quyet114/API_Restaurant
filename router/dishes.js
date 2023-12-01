@@ -12,4 +12,6 @@ route.get("/:id",dishesController.getDishId);
 route.delete("/:id", dishesController.deleteDish);
 //updateUser
 route.put("/:id",dishesController.updateDish);
+//find by keyword
+route.get("/find/search",dishesController.findOneDish);
 module.exports = route;

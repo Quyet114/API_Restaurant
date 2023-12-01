@@ -1,4 +1,4 @@
-const {Dishes} = require("../models/Dishes");
+const { Dishes } = require("../models/Dishes");
 const dishesController = {
     //add New món ăn
     createNewDish: async (req, res, next) => {
@@ -68,5 +68,20 @@ const dishesController = {
             console.log(error);
         }
     },
+    //tìm kiếm món ăn
+    findOneDish: async (req,res,next) => {
+        const keyword = req.params;
+        try {
+            const dishes = await Dishes.find(keyword);
+            if (!dishes || dishes.length === 0) {
+                return res.status(404).json({ message: 'Không tìm thấy tìm kiếm phù hợp.' });
+            }
+            return res.status(200).json(dishes);;
+
+        } catch (error) {
+            res.status(500).json(error);
+            console.log("lỗi ở đây: ",error);
+        }
+    }
 }
 module.exports = dishesController;
