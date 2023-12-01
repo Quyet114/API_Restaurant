@@ -69,8 +69,8 @@ const dishesController = {
         }
     },
     //tìm kiếm món ăn
-    findOneDish: async (req,res) => {
-        const {keyword} = req.body;
+    findOneDish: async (req,res,next) => {
+        const {keyword} = req.query;
         try {
             const dishes = await Dishes.find(
                 { about: new RegExp(keyword, 'i') }
