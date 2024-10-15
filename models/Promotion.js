@@ -12,6 +12,10 @@ const PromotionSchema = new Schema({
     type: Number,
     required: true
   },
+  discountType: { 
+    type: String,
+    default: null
+  },
   startDate: {
     type: Date,
     required: true

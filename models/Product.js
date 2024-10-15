@@ -11,6 +11,10 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: 0
   },
+  media: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ProductMedia'
+  }],
   description: {
     type: String,
     trim: true
@@ -20,11 +24,27 @@ const productSchema = new mongoose.Schema({
     ref: 'Category',
     required: true
   },
-  stock: {
-    type: Number,
-    required: true,
-    min: 0
+  promotion:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Promotion'
   },
+  stock: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Inventory'
+  },
+  sold:{
+    type: Number,
+    default: 0
+  },
+  comment:[{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  rate: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Rate'
+  }],
   createdAt: {
     type: Date,
     default: Date.now

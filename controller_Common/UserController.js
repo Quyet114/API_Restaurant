@@ -1,6 +1,8 @@
 const { User } = require('../models/User')
 const bcript = require("bcrypt")
 const jwt = require('jsonwebtoken')
+const { getIo } = require('../socket')
+
 const userController = {
   async createUser(req, res) {
     try {
@@ -16,6 +18,8 @@ const userController = {
       })
 
       await newUser.save();
+      const io = getIo();
+      io.emit('createUser', newUser);
       res.status(201).json({ message: "successfuly", status: 1, user: newUser })
     } catch (error) {
       res.status(500).json({ message: error, status: -1 });
@@ -46,7 +50,6 @@ const userController = {
     } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
-  }
-
+  },
 }
 module.exports = userController

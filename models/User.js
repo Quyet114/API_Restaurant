@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { VipPerson } = require('./VipPerson');
 
 const avatarLinks = [
   'https://example.com/avatar1.png',
@@ -48,6 +49,14 @@ const userSchema = new mongoose.Schema({
   bill: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Bill'
+  },
+  VipPerson: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'VipPerson'
+  },
+  Notification: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Notification'
   }
 });
 

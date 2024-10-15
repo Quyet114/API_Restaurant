@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const Promotion = require('./Promotion');
 const Schema = mongoose.Schema;
 
 const BillDetailSchema = new Schema({
@@ -24,6 +24,13 @@ const BillDetailSchema = new Schema({
   total: {
     type: Number,
     required: true
+  },
+  promotion: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Promotion',
+  },
+  discount: {
+    type: Number,
   }
 }, {
   timestamps: true
