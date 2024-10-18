@@ -1,11 +1,12 @@
 const { type } = require('express/lib/response');
 const mongoose = require('mongoose');
 const Voucher = require('./Voucher');
+const { verify } = require('jsonwebtoken');
 
 const Schema = mongoose.Schema;
 
 const BillSchema = new Schema({
-  customerName: {
+  customer: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
@@ -28,11 +29,11 @@ const BillSchema = new Schema({
     ref: 'User',
     required: true
   },
-  billDetail: {
+  billDetail: [{
     type: Schema.Types.ObjectId,
     ref: 'BillDetail',
     required: true
-  },
+  }],
   paymentMethod: {
     type: String,
     enum: ['Money', 'Credit Card'],
@@ -41,8 +42,22 @@ const BillSchema = new Schema({
   voucher: {
     type: Schema.Types.ObjectId,
     ref: 'Voucher'
+  },
+  type:{
+    type: String,
+    enum:['pending','completed'],
+    default:'pending'
+  },
+  mediaVerify:{
+    type: String,
+  },
+  tip:{
+    type: Number,
+    default: 0
   }
   
 });
 
-module.exports = mongoose.model('Bill', BillSchema);
+const Bill = mongoose.model('Bill', BillSchema);
+
+module.exports = Bill;

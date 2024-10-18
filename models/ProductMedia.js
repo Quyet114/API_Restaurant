@@ -28,4 +28,5 @@ const ProductMediaSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('ProductMedia', ProductMediaSchema);
+const Media = mongoose.model('ProductMedia', ProductMediaSchema);
+module.exports = Media;

@@ -1,4 +1,5 @@
 const e = require('express');
+const { type } = require('express/lib/response');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
@@ -28,12 +29,20 @@ const InventorySchema = new Schema({
       quantity: {
         type: Number,
         default: 0
+      },
+      price:{
+        type: Number,
+        default: 0
       }
     },
     {
       _id: 'M',
       type: 'M',
       quantity: {
+        type: Number,
+        default: 0
+      },
+      price:{
         type: Number,
         default: 0
       }
@@ -44,12 +53,20 @@ const InventorySchema = new Schema({
       quantity: {
         type: Number,
         default: 0
+      },
+      price:{
+        type: Number,
+        default: 0
       }
     },
     {
       _id: 'XL',
       type: 'XL',
       quantity: {
+        type: Number,
+        default: 0
+      },
+      price:{
         type: Number,
         default: 0
       }
@@ -61,6 +78,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -69,6 +89,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -77,6 +100,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -85,6 +111,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -93,6 +122,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -101,6 +133,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -109,6 +144,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -117,6 +155,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -125,6 +166,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   },
   {
@@ -133,6 +177,9 @@ const InventorySchema = new Schema({
     quantity: {
       type: Number,
       default: 0
+    },
+    price:{
+      type: Number,
     }
   }]
 });

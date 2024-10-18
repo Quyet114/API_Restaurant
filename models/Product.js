@@ -6,10 +6,19 @@ const productSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  price: {
+  priceFrom: {
     type: Number,
     required: true,
     min: 0
+  },
+  priceTo: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  avatar:{
+    type: String,
+    required: true
   },
   media: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -43,7 +52,7 @@ const productSchema = new mongoose.Schema({
   }],
   rate: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Rate'
+    ref: 'RateProduct'
   }],
   createdAt: {
     type: Date,

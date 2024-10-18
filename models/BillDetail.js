@@ -25,10 +25,6 @@ const BillDetailSchema = new Schema({
     type: Number,
     required: true
   },
-  promotion: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Promotion',
-  },
   discount: {
     type: Number,
   }
@@ -36,4 +32,5 @@ const BillDetailSchema = new Schema({
   timestamps: true
 });
 
-module.exports = mongoose.model('BillDetail', BillDetailSchema);
+const BillDetail = mongoose.model('BillDetail', BillDetailSchema);
+module.exports = BillDetail;

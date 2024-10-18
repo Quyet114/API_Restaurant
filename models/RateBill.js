@@ -3,8 +3,13 @@ const Product = require('./Product');
 
 const Schema = mongoose.Schema;
 
-const rateSchema = new Schema({
-  user: {
+const rateBillSchema = new Schema({
+  staff: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  customer: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
@@ -31,4 +36,5 @@ const rateSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Rate', rateSchema);
+const RateBill = mongoose.model('RateBill', rateBillSchema);
+module.exports = RateBill;
