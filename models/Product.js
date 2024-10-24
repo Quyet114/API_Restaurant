@@ -46,10 +46,6 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0
   },
-  comment:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
-  }],
   rate: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'RateProduct'
@@ -66,4 +62,4 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', productSchema);
 
-module.exports = Product;
+module.exports = {Product};

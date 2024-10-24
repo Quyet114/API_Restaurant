@@ -1,22 +1,22 @@
-const Product = require('../models/Product');
+const {Product} = require('../models/Product');
 const { find } = require('../models/Promotion');
 
 const ProductController = {
- // category
+  // category
   async getProductsByCategory(req, res) {
     try {
-      
-      const { category } = req.body;
+
+      const { category } = req.params;
       const products = await Product.find({ category });
       res.status(200).json({ message: "Get products successfully", status: 1, products });
     } catch (error) {
-      
+
       res.status(500).json({ message: error, status: -1 });
     }
   },
   async getTenSoldProductsByCategory(req, res) {
     try {
-      const { category } = req.body;
+      const { category } = req.params;
       const products = await Product.aggregate([
         { $match: { category } },
         { $sort: { sold: -1 } },
@@ -29,10 +29,10 @@ const ProductController = {
   },
   async getTenNewestProductsByCategory(req, res) {
     try {
-      const { category } = req.body;
+      const { category } = req.params;
       const products = await Product.find({ category }).sort({ createdAt: -1 }).limit(10);
       res.status(200).json({ message: "Get products successfully", status: 1, products });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
   },
@@ -41,7 +41,7 @@ const ProductController = {
       const { category, priceFrom, priceTo } = req.body;
       const products = await Product.find({ category, priceFrom: { $gte: priceFrom }, priceTo: { $lte: priceTo } });
       res.status(200).json({ message: "Get products successfully", status: 1, products });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
   },
@@ -50,16 +50,16 @@ const ProductController = {
       const { category, name } = req.body;
       const products = await Product.find({ category, name: { $regex: name, $options: 'i' } });
       res.status(200).json({ message: "Get products successfully", status: 1, products });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
   },
   async getProductsByCategoryAndRating(req, res) {
     try {
       const { category, rating } = req.body;
-      const products = await Product.find({ category, rating }); 
+      const products = await Product.find({ category, rating });
       res.status(200).json({ message: "Get products successfully", status: 1, products });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
   },
@@ -80,7 +80,7 @@ const ProductController = {
     try {
       const products = await Product.find().sort({ createdAt: -1 }).limit(50);
       res.status(200).json({ message: "Get products successfully", status: 1, products });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
   },
@@ -90,7 +90,7 @@ const ProductController = {
       const { priceFrom, priceTo } = req.body;
       const products = await Product.find({ priceFrom: { $gte: priceFrom }, priceTo: { $lte: priceTo } });
       res.status(200).json({ message: "Get products successfully", status: 1, products });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
   },
@@ -100,7 +100,7 @@ const ProductController = {
       const { name } = req.body;
       const products = await Product.find({ name: { $regex: name, $options: 'i' } });
       res.status(200).json({ message: "Get products successfully", status: 1, products });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
   },
@@ -109,19 +109,35 @@ const ProductController = {
     try {
       const products = await Product.find({ promotion: { $exists: true } });
       res.status(200).json({ message: "Get products successfully", status: 1, products });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
-    } 
+    }
   },
   // get detail
 
   async getProductDetail(req, res) {
     try {
       const { id } = req.params;
-      const product = await Product.findById(id).populate(['category', 'promotion', 'media', 'rating', 'comment','inventory', 'rateproduct']);
+      const product = await Product.findById(id)
+        .populate(['category',
+          'promotion',
+          'media',
+          {
+            path: 'rate',
+            populate: [
+              {
+                path: 'comment',
+                model: 'Comment',
+              },
+              {
+                path: 'user',
+                model: 'User',
+              }]
+          },
+          'inventory']);
       if (!product) return res.status(404).json({ message: "Product not found", status: -1 });
       res.status(200).json({ message: "Get product successfully", status: 1, product });
-    }catch(error){
+    } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
   }

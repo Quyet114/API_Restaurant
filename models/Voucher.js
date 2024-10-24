@@ -26,4 +26,4 @@ const voucherSchema = new Schema({
 
 const Voucher = mongoose.model('Voucher', voucherSchema);
 
-module.exports = Voucher;
+module.exports = {Voucher};

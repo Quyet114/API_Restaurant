@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Promotion = require('./Promotion');
+const {Promotion} = require('./Promotion');
 const Schema = mongoose.Schema;
 
 const BillDetailSchema = new Schema({
@@ -27,10 +27,15 @@ const BillDetailSchema = new Schema({
   },
   discount: {
     type: Number,
-  }
+  },
+  status: {
+    type: String,
+    enum: ['none', 'pending', 'doing', 'done'],
+    default: 'none'
+  },
 }, {
   timestamps: true
 });
 
 const BillDetail = mongoose.model('BillDetail', BillDetailSchema);
-module.exports = BillDetail;
+module.exports = {BillDetail};

@@ -1,7 +1,8 @@
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const { } = require('')
 const multer = require('multer');
-const { removeAllListeners } = require('../models/Product');
+
 
 const cloudName = process.env.CLOUD_NAME;
 const apiKey = process.env.API_KEY;
@@ -31,12 +32,12 @@ const uploadMedia = multer({
   fileFilter: (req, file, cb) => {
     const filetypes = /jpeg|jpg|png|mp4/;
     const mimetype = filetypes.test(file.mimetype);
-    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const extname = filetypes.test(file.originalname.toLowerCase());
 
     if (mimetype && extname) {
       return cb(null, true);
     } else {
-      cb('Error: Images and videos Only!');
+      cb(new Error('Invalid file type. Only jpg, png, and mp4 files are allowed.'));
     }
   }
 });

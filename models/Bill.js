@@ -1,6 +1,6 @@
-const { type } = require('express/lib/response');
+
 const mongoose = require('mongoose');
-const Voucher = require('./Voucher');
+const {Voucher} = require('./Voucher');
 const { verify } = require('jsonwebtoken');
 
 const Schema = mongoose.Schema;
@@ -54,10 +54,14 @@ const BillSchema = new Schema({
   tip:{
     type: Number,
     default: 0
+  },
+  rate:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'RateBill'
   }
   
 });
 
 const Bill = mongoose.model('Bill', BillSchema);
 
-module.exports = Bill;
+module.exports = {Bill};

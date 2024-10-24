@@ -27,7 +27,7 @@ const userController = {
   },
   async updateUser(req, res) {
     try {
-      const userId = req.userId;
+      const userId = req.user._id;
 
       const updatedData = {};
       const salt = await bcript.genSalt(10);

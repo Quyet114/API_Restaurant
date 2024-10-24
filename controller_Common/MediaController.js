@@ -1,6 +1,7 @@
-import ProductMedia from "../models/ProductMedia";
-import Product from "../models/Product";
-import Comment from "../models/Comment";
+
+const {ProductMedia} = require('../models/ProductMedia');
+const {Comment} = require('../models/Comment');
+const {Product} = require('../models/Product');
 const MediaController = {
 
   async uploadMedia(req, res) {

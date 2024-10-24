@@ -1,5 +1,5 @@
-const Inventory = require('../models/Inventory');
-const Product = require('../models/Product');
+const {Inventory} = require('../models/Inventory');
+const {Product} = require('../models/Product');
 
 const InventoryController = {
   async createInventory(req, res) {

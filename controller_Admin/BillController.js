@@ -1,5 +1,5 @@
-const Bill = require('../models/Bill');
-const Voucher = require('../models/Voucher');
+const {Bill} = require('../models/Bill');
+const {Voucher} = require('../models/Voucher');
 
 // Get the current date with a +7 hours offset
 const currentDate = new Date();
@@ -22,7 +22,7 @@ const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(
 const lastDayInTimezone = new Date(lastDayOfMonth.getTime() - timeZoneOffset);
 const BillController = {
 
-
+  // danh sách hóa đơn đã thanh toán trong ngày
   async totalBillPaidToday(req, res) {
     try {
       const totalBill = await Bill.aggregate([
@@ -48,6 +48,7 @@ const BillController = {
       res.status(500).json({ message: error, status: -1 });
     }
   },
+  // danh sách hóa đơn đã thanh toán trong tháng
   async totalBillPaidMotnh(req, res) {
     try {
       const totalBill = await Bill.aggregate([
@@ -73,8 +74,10 @@ const BillController = {
       res.status(500).json({ message: error, status: -1 });
     }
   },
+  // danh sách hóa đơn đã thanh toán theo nhân viên
   async totalBillPaidByStaff(req, res) {
     try {
+      const {staffId} = req.body;
       const totalBill = await Bill.aggregate([
         {
           $match: {
@@ -82,7 +85,7 @@ const BillController = {
               $gte: firstDayInTimezone,
               $lt: lastDayInTimezone
             },
-            createdBy: req.user._id,
+            createdBy: staffId,
             type: 'completed'
           }
         },

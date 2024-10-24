@@ -1,7 +1,8 @@
-const BillDetail = require('../models/BillDetail');
-const Product = require('../models/Product');
+const {BillDetail} = require('../models/BillDetail');
+const {Product} = require('../models/Product');
 
-
+const currentDate = new Date();
+const timeZoneOffset = 7 * 60 * 60 * 1000; // +7 hours in milliseconds
 // First day of the month (timezone +7)
 const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
 const firstDayInTimezone = new Date(firstDayOfMonth.getTime() - timeZoneOffset);
@@ -10,6 +11,7 @@ const firstDayInTimezone = new Date(firstDayOfMonth.getTime() - timeZoneOffset);
 const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0, 23, 59, 59, 999);
 const lastDayInTimezone = new Date(lastDayOfMonth.getTime() - timeZoneOffset);
 const BillDetailController = {
+
   // lấy danh sách BillDetail theo productId và thống kê số lượng theo tháng
   async countBillDetail(req, res) {
     try {
@@ -39,11 +41,6 @@ const BillDetailController = {
         message: "Total bill detail per month grouped by productId",
         status: 1,
         totalBillPerMonth: populatedBills
-      });
-      res.status(200).json({
-        message: "Total bill detail per month grouped by productId",
-        status: 1,
-        totalBillPerMonth
       });
 
     } catch (error) {

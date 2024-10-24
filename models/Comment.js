@@ -3,23 +3,23 @@ const MediaSchema = new mongoose.Schema({
   type: {
     type: String,
     enum: ['image', 'video'],
-    required: true
   },
   name: {
     type: String,
-    required: true
   },
   url: {
     type: String,
-    required: true
   }
 });
 
 const CommentSchema = new mongoose.Schema({
-  productId: {
+  rateProduct: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
-    required: true
+    ref: 'RateProduct',
+  },
+  rateBill: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'RateBill',
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -38,4 +38,4 @@ const CommentSchema = new mongoose.Schema({
 });
 
 const Comment = mongoose.model('Comment', CommentSchema);
-module.exports = Comment;
+module.exports = {Comment};

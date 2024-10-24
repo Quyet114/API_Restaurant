@@ -32,10 +32,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  age: {
-    type: Number,
-    min: 1,
-    max: 130
+  brithday: {
+    type: Date,
   },
   roles: {
     type: Boolean,
@@ -57,8 +55,12 @@ const userSchema = new mongoose.Schema({
   Notification: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Notification'
+  },
+  Staff: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Staff'
   }
 });
 
 const User = mongoose.model('User', userSchema)
-module.exports = { User };
+module.exports =  {User}; 

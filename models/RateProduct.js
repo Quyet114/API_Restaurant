@@ -17,7 +17,6 @@ const rateProductSchema = new Schema({
   comment: {
     type: Schema.Types.ObjectId,
     ref: 'Comment',
-    required: true
   },
   rating: {
     type: Number,
@@ -32,4 +31,4 @@ const rateProductSchema = new Schema({
 });
 
 const RateProduct = mongoose.model('RateProduct', rateProductSchema);
-module.exports = RateProduct;
+module.exports = {RateProduct};

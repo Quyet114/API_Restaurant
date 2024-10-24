@@ -19,4 +19,5 @@ const VipPersonSchema = new Schema({
 });
 
 const VipPerson = mongoose.model('VipPerson', VipPersonSchema);
+
 module.exports = {VipPerson};

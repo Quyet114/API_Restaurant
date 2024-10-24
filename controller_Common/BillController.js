@@ -1,5 +1,5 @@
-const Bill = require('../models/Bill');
-const Voucher = require('../models/Voucher');
+const {Bill} = require('../models/Bill');
+const {Voucher} = require('../models/Voucher');
 const BillController = {
   async createBill(req, res) {
     try {

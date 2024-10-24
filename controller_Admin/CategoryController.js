@@ -1,4 +1,4 @@
-const Category = require('../../models/Category');
+const {Category} = require('../models/Category');
 
 const CategoryController = {
   async createCategory(req, res) {
@@ -22,6 +22,7 @@ const CategoryController = {
       res.status(500).json({ message: error, status: -1 });
     }
   },
+  // xóa danh mục sản phẩm
   async deleteCategory(req, res) {
     try {
       const { id } = req.params;
@@ -32,6 +33,7 @@ const CategoryController = {
     }
 
   }
+
   
 }
 

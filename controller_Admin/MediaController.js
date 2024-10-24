@@ -1,27 +1,8 @@
-import ProductMedia from "../models/ProductMedia";
-import Product from "../models/Product";
+const { ProductMedia } = require("../models/ProductMedia");
+const  {Product } =require( "../models/Product");
 
 const MediaController = {
 
-  async uploadMedia(req, res) {
-    try {
-      const files = req.files;
-      if (!files || files.length === 0) {
-        return res.status(400).json({ message: "No file uploaded", status: -1 });
-      }
-
-      const media = files.map(file => {
-        return {
-          mediaType: file.mimetype.split('/')[0],
-          url: file.path
-        }
-      });
-      res.status(201).json({ message: "Upload media successfully", status: 1, media });
-    } catch (error) {
-      res.status(500).json({ message: error, status: -1 });
-
-    }
-  },
   async createProductMedia(req, res) {
     try {
       const { productId, url } = req.body;
@@ -74,8 +55,8 @@ const MediaController = {
     } catch (error) {
       res.status(500).json({ message: error, status: -1 });
     }
-  }
+  },
 
-}
+};
 
-module.exports = MediaController; 
+module.exports = MediaController;

@@ -4,25 +4,19 @@ const Product = require('./Product');
 const Schema = mongoose.Schema;
 
 const rateBillSchema = new Schema({
-  staff: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  customer: {
+  bill: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: 'Product',
+    ref: 'Bill',
     required: true
   },
   comment: {
     type: Schema.Types.ObjectId,
     ref: 'Comment',
-    required: true
   },
   rating: {
     type: Number,
@@ -37,4 +31,4 @@ const rateBillSchema = new Schema({
 });
 
 const RateBill = mongoose.model('RateBill', rateBillSchema);
-module.exports = RateBill;
+module.exports = {RateBill};

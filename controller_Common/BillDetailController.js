@@ -1,5 +1,5 @@
-const BillDetail = require('../models/BillDetail');
-const Product = require('../models/Product');
+const {BillDetail} = require('../models/BillDetail');
+const {Product} = require('../models/Product');
 
 
 const BillDetailController = {
